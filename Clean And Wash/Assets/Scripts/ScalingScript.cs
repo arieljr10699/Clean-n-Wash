@@ -23,6 +23,10 @@ public class ScalingScript : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "Prefab")
+        {
+            return;
+        }
         if(canBeAccessed)
         {
             transform.localScale -= new Vector3(0.05f, 0.05f, 0.0f);

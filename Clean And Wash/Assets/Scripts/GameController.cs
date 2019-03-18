@@ -17,9 +17,10 @@ public class GameController : MonoBehaviour {
         new Vector3(2.3f,0.36f,0.0f),
         new Vector3(1.61f,-3.55f,0.0f),
     };*/
-    private int startWait = 5;
+    private int startWait = 7;
     private float spawnRate = 2;
     private int time = 60;
+    private int wait = 6;
     private bool gameover;
     public GameObject zit;
     public Slider imperfectionBar;
@@ -28,6 +29,8 @@ public class GameController : MonoBehaviour {
     public GameObject SadFace;
     public Text timerText;
     private int frameCount;
+    public Text waitlabel;
+    public GameObject waitPanel;
 
 
 
@@ -48,9 +51,38 @@ public class GameController : MonoBehaviour {
 
             if (frameCount == FRAMES_PER_SECOND)
             {
+                wait--;
+                switch (wait)
+                {
+                    case 5:
+                        waitlabel.text = " 5";
+                       
+                        break;
+                    case 4:
+                        waitlabel.text = " 4";
+                        break;
+                    case 3:
+                        waitlabel.text = "3";
+                        break;
+                    case 2:
+                        waitlabel.text = "2";
+                        break;
+                    case 1:
+                        waitlabel.text = "1";
+                        break;
+                    case 0:
+                        waitlabel.text = "0";
+                        waitPanel.SetActive(false);
+                        break;
+                }
                 frameCount = 0;
-                time--;
-                updateTimer();
+                
+                
+                if (wait < 1)
+                {
+                    time--;
+                    updateTimer();
+                }
             }
         }
     }
