@@ -24,6 +24,11 @@ public class PanelSwitchScript : MonoBehaviour {
 	
 	void Update()
     {
+        StartCoroutine(Load());
+    }
+
+    IEnumerator Load()
+    {
 
         frameCount++;
 
@@ -33,6 +38,7 @@ public class PanelSwitchScript : MonoBehaviour {
             switch (wait)
             {
                 case 5:
+                    GetComponent<AudioSource>().Play();
                     waitPanel.SetActive(false);
                     N5Panel.SetActive(true);
 
@@ -42,6 +48,8 @@ public class PanelSwitchScript : MonoBehaviour {
                     N4Panel.SetActive(true);
                     break;
                 case 3:
+                    GetComponent<AudioSource>().Stop();
+                    GetComponent<AudioSource>().Play();
                     N4Panel.SetActive(false);
                     N3Panel.SetActive(true);
                     break;
@@ -55,6 +63,7 @@ public class PanelSwitchScript : MonoBehaviour {
                     N1Panel.SetActive(true);
                     break;
                 case 0:
+                    yield return new WaitForSeconds(0.5f);
                     N1Panel.SetActive(false);
                     SceneManager.LoadScene(2);
                     break;

@@ -33,7 +33,9 @@ public class ScalingScript : MonoBehaviour {
             setCount++;
             if(setCount >=3)
             {
-                Destroy(gameObject);
+                
+                Destroy(gameObject,0.15f);
+                GetComponent<AudioSource>().Play();
                 gameController.removeFromImperfectionBar();
 
             }

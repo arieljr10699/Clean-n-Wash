@@ -39,6 +39,10 @@ public class GameController : MonoBehaviour {
     public GameObject VictoryPanel;
     public GameObject GameOverPanel;
     private bool win = false;
+    public AudioSource VictoryAudio;
+    public AudioSource GameOverAudio;
+    public AudioSource backgroundAudio;
+    public AudioSource buttonAudio;
 
 
 
@@ -67,6 +71,8 @@ public class GameController : MonoBehaviour {
                 {
                     gameover = true;
                     win = true;
+                   backgroundAudio.Stop();
+                    VictoryAudio.Play();
                 }
             }
         }
@@ -170,6 +176,8 @@ public class GameController : MonoBehaviour {
         if(imperfectionCount == 14)
         {
             gameover = true;
+            backgroundAudio.Stop();
+            GameOverAudio.Play();
         }
     }
     
@@ -193,6 +201,13 @@ public class GameController : MonoBehaviour {
 
     public void backToLevelSelect()
     {
+        StartCoroutine(Load());
+    }
+
+    IEnumerator Load()
+    {
+        buttonAudio.Play();
+        yield return new WaitForSeconds(0.4f);
         SceneManager.LoadScene(1);
     }
 }

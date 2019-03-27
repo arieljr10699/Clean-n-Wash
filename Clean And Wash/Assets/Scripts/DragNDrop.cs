@@ -5,9 +5,6 @@ using UnityEngine;
 public class DragNDrop : MonoBehaviour {
 
     public float distance;
-    public GameObject happy;
-    public GameObject sad;
-    private bool Switch = false;
 
     private void OnMouseDrag()
     {
@@ -24,20 +21,5 @@ public class DragNDrop : MonoBehaviour {
 
     private void Update()
     {
-        if(Input.GetButton("Jump"))
-            {
-                if (!Switch)
-                {
-                    happy.SetActive(false);
-                    sad.SetActive(true);
-                    Switch = true;
-                }
-                else
-                {
-                    happy.SetActive(true);
-                    sad.SetActive(false);
-                    Switch = false;
-                }
-            }
     }
 }
