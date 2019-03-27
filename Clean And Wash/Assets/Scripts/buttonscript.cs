@@ -7,6 +7,6 @@ public class buttonscript : MonoBehaviour {
 
      public void test()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

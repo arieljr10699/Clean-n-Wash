@@ -17,10 +17,10 @@ public class GameController : MonoBehaviour {
         new Vector3(2.3f,0.36f,0.0f),
         new Vector3(1.61f,-3.55f,0.0f),
     };*/
-    private int startWait = 7;
+    private int startWait = 1;
     private float spawnRate = 2;
     private int time = 60;
-    private int wait = 6;
+    private int wait = 3;
     private bool gameover;
     public GameObject zit;
     public Slider imperfectionBar;
@@ -31,16 +31,25 @@ public class GameController : MonoBehaviour {
     private int frameCount;
     public Text waitlabel;
     public GameObject waitPanel;
+    public GameObject N5Panel;
+    public GameObject N4Panel;
+    public GameObject N3Panel;
+    public GameObject N2Panel;
+    public GameObject N1Panel;
+    public GameObject VictoryPanel;
+    public GameObject GameOverPanel;
+    private bool win = false;
 
 
 
-    void Start () {
+    void Start()
+    {
 
         imperfectionCount = 0;
         StartCoroutine(spawnWaves());
         gameover = false;
         updateTimer();
-	}
+    }
 
     // Update is called once per frame
     void Update()
@@ -51,39 +60,36 @@ public class GameController : MonoBehaviour {
 
             if (frameCount == FRAMES_PER_SECOND)
             {
-                wait--;
-                switch (wait)
-                {
-                    case 5:
-                        waitlabel.text = " 5";
-                       
-                        break;
-                    case 4:
-                        waitlabel.text = " 4";
-                        break;
-                    case 3:
-                        waitlabel.text = "3";
-                        break;
-                    case 2:
-                        waitlabel.text = "2";
-                        break;
-                    case 1:
-                        waitlabel.text = "1";
-                        break;
-                    case 0:
-                        waitlabel.text = "0";
-                        waitPanel.SetActive(false);
-                        break;
-                }
-                frameCount = 0;
-                
-                
-                if (wait < 1)
-                {
                     time--;
                     updateTimer();
+                frameCount = 0;
+                if(time == 0)
+                {
+                    gameover = true;
+                    win = true;
                 }
             }
+        }
+        if (gameover)
+        {
+            if (win)
+            {
+                VictoryPanel.SetActive(true);
+
+                frameCount++;
+
+                if (frameCount == FRAMES_PER_SECOND)
+                {
+                    wait--;
+                    if (wait == 0)
+                    {
+                        SceneManager.LoadScene(1);
+                    }
+                    frameCount = 0;
+
+                }
+            }
+            else if (!win) { GameOverPanel.SetActive(true); }
         }
     }
 
@@ -163,7 +169,7 @@ public class GameController : MonoBehaviour {
         }
         if(imperfectionCount == 14)
         {
-            SceneManager.LoadScene(1);
+            gameover = true;
         }
     }
     
@@ -183,5 +189,10 @@ public class GameController : MonoBehaviour {
     {
         timerText.text = "Time : " + time;
 
+    }
+
+    public void backToLevelSelect()
+    {
+        SceneManager.LoadScene(1);
     }
 }
