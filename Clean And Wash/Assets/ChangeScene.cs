@@ -8,6 +8,13 @@ public class ChangeScene : MonoBehaviour
     // Start is called before the first frame update
 
     public void NivelFacil() {
+        Static.Level1 = true;
+        StartCoroutine(Load());
+    }
+
+    public void NivelIntermedio()
+    {
+        Static.Level2 = true;
         StartCoroutine(Load());
     }
 

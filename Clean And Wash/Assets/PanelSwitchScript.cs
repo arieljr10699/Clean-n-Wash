@@ -14,6 +14,7 @@ public class PanelSwitchScript : MonoBehaviour {
     public GameObject N3Panel;
     public GameObject N2Panel;
     public GameObject N1Panel;
+ 
 
 
     void Start () {
@@ -65,7 +66,15 @@ public class PanelSwitchScript : MonoBehaviour {
                 case 0:
                     yield return new WaitForSeconds(0.5f);
                     N1Panel.SetActive(false);
-                    SceneManager.LoadScene(2);
+                if(Static.Level1)
+                    {
+                        SceneManager.LoadScene(2);
+                    }
+                else if(Static.Level2)
+                    {
+                        SceneManager.LoadScene(4);
+                    }
+                    
                     break;
 
             }

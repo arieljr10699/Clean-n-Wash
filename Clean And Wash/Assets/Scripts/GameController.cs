@@ -22,11 +22,12 @@ public class GameController : MonoBehaviour {
     private int time = 60;
     private int wait = 3;
     private bool gameover;
-    public GameObject zit;
+    public GameObject zit,pataGallo1,pataGallo2;
     public Slider imperfectionBar;
     private int imperfectionCount;
     public GameObject HappyFace;
     public GameObject SadFace;
+    public GameObject idkface;
     public Text timerText;
     private int frameCount;
     public Text waitlabel;
@@ -43,6 +44,7 @@ public class GameController : MonoBehaviour {
     public AudioSource GameOverAudio;
     public AudioSource backgroundAudio;
     public AudioSource buttonAudio;
+    public bool canSpawn1, canSpawn2;
 
 
 
@@ -53,6 +55,8 @@ public class GameController : MonoBehaviour {
         StartCoroutine(spawnWaves());
         gameover = false;
         updateTimer();
+        canSpawn1 = true;
+        canSpawn2 = true;
     }
 
     // Update is called once per frame
@@ -70,6 +74,8 @@ public class GameController : MonoBehaviour {
                 if(time == 0)
                 {
                     gameover = true;
+                    Static.Level2 = false;
+                    Static.Level1 = false;
                     win = true;
                    backgroundAudio.Stop();
                     VictoryAudio.Play();
@@ -106,7 +112,22 @@ public class GameController : MonoBehaviour {
         {
             if (time > 30)
             {
+                int randArea = (int)Random.Range(1.0f, 2.9f);
                 InstantiateRandomZit();
+                if (Static.Level2)
+                {
+                    if (randArea == 1 && canSpawn1)
+                    {
+                        Instantiate(pataGallo1, pataGallo1.transform.position, pataGallo1.transform.rotation);
+                        canSpawn1 = false;
+                    }
+                    if (randArea == 2 && canSpawn2)
+                    {
+                        Instantiate(pataGallo2, pataGallo2.transform.position, pataGallo2.transform.rotation);
+                        canSpawn2 = false;
+                    }
+                }
+               
                 yield return new WaitForSeconds(spawnRate);
             }
             else if(time <= 30)
@@ -122,42 +143,83 @@ public class GameController : MonoBehaviour {
     void InstantiateRandomZit()
     {
             int randArea = (int)Random.Range(1.0f, 3.9f);
-            
-        switch(randArea)
+        if (Static.Level1)
         {
-            case 1:
-                Vector3 spawnPosition1 = new Vector3
-                    (
-                    Random.Range(-0.71f, 1.23f),
-                    Random.Range(1.42f, 1.94f),
-                    0.0f
-                    );
-                Quaternion SpawnRotation1 = new Quaternion(0, 0, 0, 0);
-                Instantiate(zit, spawnPosition1, SpawnRotation1);
-                addToImperfectionBar();
-                break;
-            case 2:
-                Vector3 spawnPosition2 = new Vector3
-                   (
-                   Random.Range(-0.9f, 1.37f),
-                   Random.Range(-0.82f, -0.12f),
-                   0.0f
-                   );
-                Quaternion SpawnRotation2 = new Quaternion(0, 0, 0, 0);
-                Instantiate(zit, spawnPosition2, SpawnRotation2);
-                addToImperfectionBar();
-                break;
-            case 3:
-                Vector3 spawnPosition3 = new Vector3
-                  (
-                  Random.Range(-0.21f, 0.91f),
-                  Random.Range(-2.18f, -1.7f),
-                  0.0f
-                  );
-                Quaternion SpawnRotation3 = new Quaternion(0, 0, 0, 0);
-                Instantiate(zit, spawnPosition3, SpawnRotation3);
-                addToImperfectionBar();
-                break;
+            switch (randArea)
+            {
+                case 1:
+                    Vector3 spawnPosition1 = new Vector3
+                        (
+                        Random.Range(-0.71f, 1.23f),
+                        Random.Range(1.42f, 1.94f),
+                        0.0f
+                        );
+                    Quaternion SpawnRotation1 = new Quaternion(0, 0, 0, 0);
+                    Instantiate(zit, spawnPosition1, SpawnRotation1);
+                    addToImperfectionBar();
+                    break;
+                case 2:
+                    Vector3 spawnPosition2 = new Vector3
+                       (
+                       Random.Range(-0.9f, 1.37f),
+                       Random.Range(-0.82f, -0.12f),
+                       0.0f
+                       );
+                    Quaternion SpawnRotation2 = new Quaternion(0, 0, 0, 0);
+                    Instantiate(zit, spawnPosition2, SpawnRotation2);
+                    addToImperfectionBar();
+                    break;
+                case 3:
+                    Vector3 spawnPosition3 = new Vector3
+                      (
+                      Random.Range(-0.21f, 0.91f),
+                      Random.Range(-2.18f, -1.7f),
+                      0.0f
+                      );
+                    Quaternion SpawnRotation3 = new Quaternion(0, 0, 0, 0);
+                    Instantiate(zit, spawnPosition3, SpawnRotation3);
+                    addToImperfectionBar();
+                    break;
+            }
+        }
+            else if(Static.Level2)
+        {
+            switch (randArea)
+            {
+                case 1:
+                    Vector3 spawnPosition1 = new Vector3
+                        (
+                        Random.Range(-0.71f, 1.23f),
+                        Random.Range(1.02f, 1.54f),
+                        -2.0f
+                        );
+                    Quaternion SpawnRotation1 = new Quaternion(0, 0, 0, 0);
+                    Instantiate(zit, spawnPosition1, SpawnRotation1);
+                    addToImperfectionBar();
+                    break;
+                case 2:
+                    Vector3 spawnPosition2 = new Vector3
+                       (
+                       Random.Range(-0.9f, 1.25f),
+                       Random.Range(-0.75f, -0.16f),
+                       -2.0f
+                       );
+                    Quaternion SpawnRotation2 = new Quaternion(0, 0, 0, 0);
+                    Instantiate(zit, spawnPosition2, SpawnRotation2);
+                    addToImperfectionBar();
+                    break;
+                case 3:
+                    Vector3 spawnPosition3 = new Vector3
+                      (
+                      Random.Range(-0.21f, 0.63f),
+                      Random.Range(-1.65f, -1.39f),
+                      -2.0f
+                      );
+                    Quaternion SpawnRotation3 = new Quaternion(0, 0, 0, 0);
+                    Instantiate(zit, spawnPosition3, SpawnRotation3);
+                    addToImperfectionBar();
+                    break;
+            }
         }
            
 
@@ -168,7 +230,7 @@ public class GameController : MonoBehaviour {
         imperfectionBar.value += IMPERFECTION_TO_BAR_RATIO;
         imperfectionCount++;
 
-        if(imperfectionCount == 6)
+        if(imperfectionCount == 7)
         {
             HappyFace.SetActive(false);
             SadFace.SetActive(true);
@@ -176,6 +238,8 @@ public class GameController : MonoBehaviour {
         if(imperfectionCount == 14)
         {
             gameover = true;
+            Static.Level2 = false;
+            Static.Level1 = false;
             backgroundAudio.Stop();
             GameOverAudio.Play();
         }
@@ -186,7 +250,7 @@ public class GameController : MonoBehaviour {
         imperfectionBar.value -= IMPERFECTION_TO_BAR_RATIO;
         imperfectionCount--;
 
-        if (imperfectionCount == 5)
+        if (imperfectionCount == 6)
         {
             HappyFace.SetActive(true);
             SadFace.SetActive(false);
@@ -209,5 +273,28 @@ public class GameController : MonoBehaviour {
         buttonAudio.Play();
         yield return new WaitForSeconds(0.4f);
         SceneManager.LoadScene(1);
+    }
+
+    public void setface(bool val)
+    {
+        if (imperfectionCount < 7) {
+            HappyFace.SetActive(!val);
+            idkface.SetActive(val);
+        }
+        else
+        if (imperfectionCount > 6)
+        {
+            SadFace.SetActive(!val);
+            idkface.SetActive(val);
+        }
+    }
+
+    public void setSpawn1(bool val)
+    {
+        canSpawn1 = val;
+    }
+    public void setSpawn2(bool val)
+    {
+        canSpawn2 = val;
     }
 }

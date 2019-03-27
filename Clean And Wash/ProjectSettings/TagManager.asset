@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Soap
   - Prefab
+  - GameController2
+  - PataGallo1
+  - PataGallo2
+  - Brush
   layers:
   - Default
   - TransparentFX

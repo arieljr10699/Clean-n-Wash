@@ -220,14 +220,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ChangeScene.cs" />
+    <Compile Include="Assets\GameController2.cs" />
     <Compile Include="Assets\menuscript.cs" />
     <Compile Include="Assets\PanelSwitchScript.cs" />
+    <Compile Include="Assets\ScaleScript2.cs" />
+    <Compile Include="Assets\ScaleScript3.cs" />
     <Compile Include="Assets\Scripts\buttonscript.cs" />
     <Compile Include="Assets\Scripts\DragNDrop.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\ScalingScript.cs" />
     <Compile Include="Assets\Scripts\scenechange.cs" />
+    <Compile Include="Assets\Static.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

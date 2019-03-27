@@ -18,8 +18,4 @@ public class DragNDrop : MonoBehaviour {
         transform.position = objPosition;
 
     }
-
-    private void Update()
-    {
-    }
 }

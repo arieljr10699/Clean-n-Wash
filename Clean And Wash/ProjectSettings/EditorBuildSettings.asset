@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Preparados.unity
     guid: 827d67cfb605e3a468c88f4c124442ae
+  - enabled: 1
+    path: Assets/Scenes/main 1.unity
+    guid: b83fe403173c33b41badba453eae401b
