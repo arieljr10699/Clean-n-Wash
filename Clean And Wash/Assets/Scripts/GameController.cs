@@ -95,6 +95,7 @@ public class GameController : MonoBehaviour {
                     wait--;
                     if (wait == 0)
                     {
+                        Static.Level2lock = false;
                         SceneManager.LoadScene(1);
                     }
                     frameCount = 0;
@@ -119,11 +120,13 @@ public class GameController : MonoBehaviour {
                     if (randArea == 1 && canSpawn1)
                     {
                         Instantiate(pataGallo1, pataGallo1.transform.position, pataGallo1.transform.rotation);
+                        addToImperfectionBar();
                         canSpawn1 = false;
                     }
                     if (randArea == 2 && canSpawn2)
                     {
                         Instantiate(pataGallo2, pataGallo2.transform.position, pataGallo2.transform.rotation);
+                        addToImperfectionBar();
                         canSpawn2 = false;
                     }
                 }
@@ -132,8 +135,22 @@ public class GameController : MonoBehaviour {
             }
             else if(time <= 30)
             {
+                int randArea = (int)Random.Range(1.0f, 2.9f);
                 InstantiateRandomZit();
                 InstantiateRandomZit();
+                if (Static.Level2)
+                {
+                    if (randArea == 1 && canSpawn1)
+                    {
+                        Instantiate(pataGallo1, pataGallo1.transform.position, pataGallo1.transform.rotation);
+                        canSpawn1 = false;
+                    }
+                    if (randArea == 2 && canSpawn2)
+                    {
+                        Instantiate(pataGallo2, pataGallo2.transform.position, pataGallo2.transform.rotation);
+                        canSpawn2 = false;
+                    }
+                }
                 yield return new WaitForSeconds(spawnRate);
             }
 

@@ -231,6 +231,7 @@
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\ScalingScript.cs" />
     <Compile Include="Assets\Scripts\scenechange.cs" />
+    <Compile Include="Assets\selectController.cs" />
     <Compile Include="Assets\Static.cs" />
   </ItemGroup>
   <ItemGroup>

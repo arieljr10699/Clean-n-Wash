@@ -8,6 +8,7 @@ public class ScaleScript3 : MonoBehaviour
     private const int IMPERFECTION_TO_BAR_RATIO = 1 / 14;
     private bool canBeAccessed = true;
     private GameController gameController;
+    int setCount = 0;
 
 
     private void Start()
@@ -31,23 +32,35 @@ public class ScaleScript3 : MonoBehaviour
         if (canBeAccessed)
         {
             gameController.setface(true);
+            transform.localScale -= new Vector3(0.15f, 0.15f, 0.0f);
+            setCount++;
+            if (setCount >= 3)
+            {
+
+                Destroy(gameObject, 0.15f);
+                GetComponent<AudioSource>().Play();
+                if (gameObject.tag == "PataGallo1")
+                {
+                    gameController.setSpawn1(true);
+                }
+                if (gameObject.tag == "PataGallo2")
+                {
+                    gameController.setSpawn2(true);
+                }
+                gameController.removeFromImperfectionBar();
+
+            }
         }
-        canBeAccessed = false;
+            canBeAccessed = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(gameObject.tag == "PataGallo1")
+        if(other.tag == "Soap")
         {
-            gameController.setSpawn1(true);
+            return;
         }
-        if (gameObject.tag == "PataGallo2")
-        {
-            gameController.setSpawn2(true);
-        }
-        gameController.setface(false);
-        Destroy(gameObject, 0.15f);
-        GetComponent<AudioSource>().Play();
+        canBeAccessed = true;
     }
 
 

@@ -25,7 +25,7 @@ public class ScaleScript2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Prefab" || other.tag == "Brush")
+        if (other.tag == "Prefab" || other.tag == "Brush" || other.tag == "PataGallo1" || other.tag == "PataGallo2")
         {
             return;
         }

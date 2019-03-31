@@ -7,6 +7,7 @@ using UnityEngine;
 
     private static bool level1;
     private static bool level2;
+    private static bool level2lock = true;
 
     public static bool Level1
         {
@@ -31,6 +32,17 @@ using UnityEngine;
                 level2 = value;
             }
         }
+    public static bool Level2lock
+    {
+        get
+        {
+            return level2lock;
+        }
+        set
+        {
+            level2lock = value;
+        }
     }
+}
 
 
